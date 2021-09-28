@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "resource")
 public class Resource {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -25,6 +25,12 @@ public class Resource {
             mappedBy = "resource",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Resource> resources;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "resource",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<ResourceDetail> resourceDetail;
 
     public Resource() {
     }
@@ -61,7 +67,6 @@ public class Resource {
         this.cost = cost;
     }
 
-
     public List<Resource> getResources() {
         return resources;
     }
@@ -72,6 +77,14 @@ public class Resource {
 
     public void setResources(List<Resource> resources) {
         this.resources = resources;
+    }
+
+    public List<ResourceDetail> getResourceDetail() {
+        return resourceDetail;
+    }
+
+    public void setResourceDetail(List<ResourceDetail> resourceDetail) {
+        this.resourceDetail = resourceDetail;
     }
 
 }

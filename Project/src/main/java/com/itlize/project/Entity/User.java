@@ -8,14 +8,14 @@ import java.util.List;
 @Table( name = "user")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
-    @Column(name = "role")
-    private String role;
+    @Column(name = "email")
+    private String email;
     @Column(name = "time_created")
     private Date timeCreated;
 
@@ -53,12 +53,12 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setEmail(String role) {
+        this.email = email;
     }
 
     public Date getTimeCreated() {
