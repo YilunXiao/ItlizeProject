@@ -1,20 +1,30 @@
 package com.itlize.project.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "resource")
 public class Resource {
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "resource_code")
     private String resourceCode;
 
+    @Column(name = "cost")
     private Integer cost;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "resource",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Resource> resources;
 
     public Resource() {
     }
@@ -42,6 +52,7 @@ public class Resource {
     public void setResourceCode(String resourceCode) {
         this.resourceCode = resourceCode;
     }
+
     public Integer getCost() {
         return cost;
     }
@@ -49,4 +60,18 @@ public class Resource {
     public void setResourceCode(Integer cost) {
         this.cost = cost;
     }
+
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
 }

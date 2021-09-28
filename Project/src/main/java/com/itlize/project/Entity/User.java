@@ -23,7 +23,7 @@ public class User {
             fetch = FetchType.LAZY,
             mappedBy = "user",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    List<Project> project;
+    private List<Project> projects;
 
     public User() {
     }
@@ -70,10 +70,10 @@ public class User {
     }
 
     public List<Project> getProject() {
-        return project;
+        return projects;
     }
 
     public void setProject(List<Project> project) {
-        this.project = project;
+        this.projects = project;
     }
 }
