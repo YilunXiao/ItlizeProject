@@ -1,19 +1,23 @@
 package com.itlize.project.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "resource_detail")
 public class ResourceDetail {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer projectColumnId;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "project_column_id")
+    private ProjectColumn projectColumn;
 
-    private Integer resourceId;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "resource_id")
+    private Resource resource;
 
+    @Column(name = "description")
     private String description;
 
     public ResourceDetail() {
@@ -27,26 +31,27 @@ public class ResourceDetail {
         this.id = id;
     }
 
-    public Integer getProjectColumnId() {
-        return projectColumnId;
-    }
-
-    public void setProjectColumnId(Integer projectColumnId) {
-        this.projectColumnId = projectColumnId;
-    }
-
-    public Integer getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(Integer resourceId) {
-        this.resourceId = resourceId;
-    }
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ProjectColumn getProjectColumn() {
+        return projectColumn;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setProjectColumn(ProjectColumn projectColumn) {
+        this.projectColumn = projectColumn;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 }
