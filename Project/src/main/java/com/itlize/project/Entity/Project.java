@@ -1,20 +1,36 @@
 package com.itlize.project.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "project")
 public class Project {
 
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Integer id;
 
-    private Integer userId;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "user_id")
+    User user;
 
+    @Column(name = "time_created")
     private Date timeCreated;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "project",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    List<ProjectResource> resources;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "project",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    List<ProjectColumn> columns;
 
     public Project() {
     }
@@ -27,12 +43,12 @@ public class Project {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User userId) {
+        this.user = user;
     }
 
     public Date getTimeCreated() {
@@ -41,5 +57,22 @@ public class Project {
 
     public void setTimeCreated(Date timeCreated) {
         this.timeCreated = timeCreated;
+    }
+
+    public List<ProjectResource> getResources() {
+        return resources;
+    }
+
+    public List<ProjectColumn> getColumns() {
+        return columns;
+    }
+
+
+    public void setResources(List<ProjectResource> resources) {
+        this.resources = resources;
+    }
+
+    public void setColumns(List<ProjectColumn> columns) {
+        this.columns = columns;
     }
 }

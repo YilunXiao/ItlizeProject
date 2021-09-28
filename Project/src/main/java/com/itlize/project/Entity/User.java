@@ -1,23 +1,29 @@
 package com.itlize.project.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table( name = "user")
 public class User {
     @Id
     @GeneratedValue
     private Integer id;
-
-    private String userName;
-
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
     private String password;
-
+    @Column(name = "role")
     private String role;
-
+    @Column(name = "time_created")
     private Date timeCreated;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "user",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    List<Project> project;
 
     public User() {
     }
@@ -30,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 
@@ -61,5 +67,13 @@ public class User {
 
     public void setTimeCreated(Date timeCreated) {
         this.timeCreated = timeCreated;
+    }
+
+    public List<Project> getProject() {
+        return project;
+    }
+
+    public void setProject(List<Project> project) {
+        this.project = project;
     }
 }
