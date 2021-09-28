@@ -15,7 +15,7 @@ public class Project {
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
-    User user;
+    private User user;
 
     @Column(name = "time_created")
     private Date timeCreated;
@@ -24,13 +24,13 @@ public class Project {
             fetch = FetchType.LAZY,
             mappedBy = "project",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    List<ProjectResource> resources;
+    private List<ProjectResource> resources;
 
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "project",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    List<ProjectColumn> columns;
+    private List<ProjectColumn> columns;
 
     public Project() {
     }

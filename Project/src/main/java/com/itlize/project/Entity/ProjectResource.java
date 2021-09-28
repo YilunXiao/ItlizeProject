@@ -1,19 +1,24 @@
 package com.itlize.project.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "project_resource")
 public class ProjectResource {
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Integer id;
 
-    private Integer projectId;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "project_id")
+    private Project project;
 
-    private Integer resourceId;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "resource_id")
+    private Resource resource;
 
+    @Column(name = "resource_amount")
     private Integer resourceAmount;
 
     public ProjectResource() {
@@ -27,21 +32,6 @@ public class ProjectResource {
         this.id = id;
     }
 
-    public Integer getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
-    }
-
-    public Integer getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(Integer resourceId) {
-        this.resourceId = resourceId;
-    }
     public Integer getResourceAmount() {
         return resourceAmount;
     }
@@ -49,6 +39,23 @@ public class ProjectResource {
     public void setResourceAmount(Integer resourceAmount) {
         this.resourceAmount = resourceAmount;
     }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
+    }
+
 
 
 }
