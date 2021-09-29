@@ -1,6 +1,9 @@
-package com.itlize.project;
+package com.itlize.project.Entity;
 
 import com.itlize.project.Entity.Project;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class TestProjectEntity {
     private Project project;
@@ -11,11 +14,12 @@ public class TestProjectEntity {
     }
 
     @Test
-    public void projectTest1(){
+    public void projectTestID(){
         // Given
-
+        int expected = 10;
+        project.setID(expected);
         // When
-        String actual = basicStrings.flipConcat(string1, string2);
+        int actual = project.getID();
         // Then
         Assert.assertEquals(expected, actual);
     }
