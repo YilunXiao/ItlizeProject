@@ -1,5 +1,7 @@
 package com.itlize.project.Entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,7 @@ public class User {
     @Column(name = "email")
     private String email;
     @Column(name = "time_created")
+    @DateTimeFormat(pattern = "MM/DD/YYYY")
     private Date timeCreated;
 
     @OneToMany(
@@ -44,7 +47,6 @@ public class User {
         this.username = username;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -57,7 +59,7 @@ public class User {
         return email;
     }
 
-    public void setEmail(String role) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
