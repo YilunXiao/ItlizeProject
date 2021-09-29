@@ -1,27 +1,37 @@
 package com.itlize.project.Entity;
 
-import com.itlize.project.Entity.Project;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import java.util.Date;
+
 
 public class TestProjectEntity {
-    private Project project;
-
-    @Before
-    public void setUp() {
-        project = new Project();
-    }
 
     @Test
     public void projectTestID(){
         // Given
+        Project project = new Project();
         int expected = 10;
-        project.setID(expected);
+        project.setId(expected);
         // When
-        int actual = project.getID();
+        int actual = project.getId();
         // Then
-        Assert.assertEquals(expected, actual);
+        assert(actual == expected);
+    }
+
+    @Test
+    public void projectTestUser(){
+        // Given
+        Project project = new Project();
+        User expected = new User();
+        // When
+        project.setUser(expected);
+        // Then
+        assert(project.getUser().equals(expected));
+    }
+
+    @Test
+    public void projectTimeCreated(){
+
     }
 
 }
