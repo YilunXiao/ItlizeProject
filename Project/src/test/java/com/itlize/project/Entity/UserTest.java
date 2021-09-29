@@ -2,7 +2,9 @@ package com.itlize.project.Entity;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class UserTest {
 
@@ -64,5 +66,15 @@ public class UserTest {
         //System.out.println(date);
         //System.out.println(user.getTimeCreated());
         assert(user.getTimeCreated()).equals(date);
+    }
+
+    @Test
+    void getProducts(){
+        User user = new User();
+        Project project1 = new Project();
+        List<Project> projectList = new ArrayList<Project>();
+        projectList.add(project1);
+        user.setProjects(projectList);
+        assert(user.getProjects()).equals(projectList);
     }
 }

@@ -24,13 +24,13 @@ public class Resource {
             fetch = FetchType.LAZY,
             mappedBy = "resource",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<Resource> resources;
+    private List<ProjectResource> projectResources;
 
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "resource",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<ResourceDetail> resourceDetail;
+    private List<ResourceDetail> resourceDetails;
 
     public Resource() {
     }
@@ -63,28 +63,24 @@ public class Resource {
         return cost;
     }
 
-    public void setResourceCode(Integer cost) {
-        this.cost = cost;
-    }
-
-    public List<Resource> getResources() {
-        return resources;
+    public List<ProjectResource> getProjectResources() {
+        return projectResources;
     }
 
     public void setCost(Integer cost) {
         this.cost = cost;
     }
 
-    public void setResources(List<Resource> resources) {
-        this.resources = resources;
+    public void setProjectResources(List<ProjectResource> projectResources) {
+        this.projectResources = projectResources;
     }
 
-    public List<ResourceDetail> getResourceDetail() {
-        return resourceDetail;
+    public List<ResourceDetail> getResourceDetails() {
+        return resourceDetails;
     }
 
-    public void setResourceDetail(List<ResourceDetail> resourceDetail) {
-        this.resourceDetail = resourceDetail;
+    public void setResourceDetails(List<ResourceDetail> resourceDetails) {
+        this.resourceDetails = resourceDetails;
     }
 
 }

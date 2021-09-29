@@ -7,6 +7,16 @@ import java.util.List;
 @Table(name = "project_column")
 public class ProjectColumn {
 
+    public enum Type{
+        Number("number"),
+        Text("text"),
+        Formula("formula");
+        private final String typename;
+        Type(String typename){
+            this.typename = typename;
+        }
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,7 +29,7 @@ public class ProjectColumn {
     private String columnName;
 
     @Column(name = "type")
-    private Enum type;
+    private Type type;
 
     @Column(name = "formula_text")
     private String formulaText;
@@ -49,11 +59,11 @@ public class ProjectColumn {
         this.columnName = columnName;
     }
 
-    public Enum getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(Enum type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

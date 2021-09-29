@@ -71,11 +71,11 @@ public class User {
         this.timeCreated = timeCreated;
     }
 
-    public List<Project> getProject() {
+    public List<Project> getProjects() {
         return projects;
     }
 
-    public void setProject(List<Project> project) {
+    public void setProjects(List<Project> project) {
         this.projects = project;
     }
 }
