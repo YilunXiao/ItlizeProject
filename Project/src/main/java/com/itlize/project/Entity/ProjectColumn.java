@@ -1,7 +1,5 @@
 package com.itlize.project.Entity;
 
-import com.sun.tools.javac.code.Attribute;
-
 import javax.persistence.*;
 import java.util.List;
 
