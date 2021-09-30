@@ -21,6 +21,14 @@ public class ResourceDetailTest {
     }
 
     @Test
+    void getCost(){
+        ResourceDetail detail = new ResourceDetail();
+        Integer cost = 9421;
+        detail.setCost(cost);
+        assert(detail.getCost()).equals(9421);
+    }
+
+    @Test
     void getProjectColumn(){
         ResourceDetail detail = new ResourceDetail();
         ProjectColumn projectColumn = new ProjectColumn();

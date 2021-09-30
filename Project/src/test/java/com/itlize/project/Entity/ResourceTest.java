@@ -24,19 +24,11 @@ public class ResourceTest {
     }
 
     @Test
-    void getResourceCode(){
+    void getResourceCode() {
         Resource resource = new Resource();
         String resourceCode = "FEE1003";
         resource.setResourceCode(resourceCode);
-        assert(resource.getResourceCode()).equals("FEE1003");
-    }
-
-    @Test
-    void getCost(){
-        Resource resource = new Resource();
-        Integer cost = 9421;
-        resource.setCost(cost);
-        assert(resource.getCost()).equals(9421);
+        assert (resource.getResourceCode()).equals("FEE1003");
     }
 
     @Test

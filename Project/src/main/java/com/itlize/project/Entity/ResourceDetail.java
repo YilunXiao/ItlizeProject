@@ -20,6 +20,9 @@ public class ResourceDetail {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "cost")
+    private Integer cost;
+
     public ResourceDetail() {
     }
 
@@ -53,5 +56,13 @@ public class ResourceDetail {
 
     public void setResource(Resource resource) {
         this.resource = resource;
+    }
+
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
     }
 }

@@ -11,20 +11,74 @@ import java.util.List;
 @Service
 public class ResourceServiceImp implements ResourceService {
     @Autowired
-    private ResourceRepository repository;
+    private ResourceRepository resourceRepository;
 
     @Override
-    public Resource findById(Integer Id) {
-        return repository.getById(Id);
+    public Resource findOne(Integer id) throws Exception{
+        Resource resource = resourceRepository.findResourceById(id);
+        if (resource == null){
+            throw new Exception ("No resource found by id " + id);
+        }
+        return resource;
     }
 
     @Override
-    public List<Resource> findAll() {
-        return repository.findAll();
+    public List<Resource> findAll(){
+        List<Resource> list = resourceRepository.findAll();
+        return list;
     }
 
     @Override
-    public Resource save(Resource resource) {
-        return repository.save(resource);
+    public Resource findName(String resourceName) throws Exception{
+        Resource resource = resourceRepository.findResourceByName(resourceName);
+        if (resource == null){
+            throw new Exception ("No resource found by name " + resourceName);
+        }
+        return resource;
+    }
+
+    @Override
+    public Resource findCode(String resourceCode) throws Exception{
+        Resource resource = resourceRepository.findResourceByCode(resourceCode);
+        if (resource == null){
+            throw new Exception ("No resource found by code " + resourceCode);
+        }
+        return resource;
+    }
+
+    @Override
+    public void addOne(String resourceName){
+        Resource newResource = new Resource(resourceName);
+        resourceRepository.saveAndFlush(newResource);
+    }
+
+    @Override
+    public void updateName(Integer id, String resourceName) throws Exception{
+        Resource resource = resourceRepository.findResourceById(id);
+        if (resource == null){
+            throw new Exception ("The resource doesn't exist.");
+        }
+        resource.setName(resourceName);
+        resourceRepository.saveAndFlush(resource);
+    }
+
+    @Override
+    public void updateCode(Integer id, String resourceCode) throws Exception{
+        Resource resource = resourceRepository.findResourceById(id);
+        if (resource == null){
+            throw new Exception ("The resource doesn't exist.");
+        }
+        resource.setResourceCode(resourceCode);
+        resourceRepository.saveAndFlush(resource);
+    }
+
+    @Override
+    public void deleteOne(Integer id) throws Exception{
+        Resource resource = resourceRepository.findResourceById(id);
+        if (resource == null){
+            throw new Exception ("Failed. The resource doesn't exist.");
+        }
+        resourceRepository.deleteById(id);
+
     }
 }
