@@ -47,38 +47,41 @@ public class ResourceServiceImp implements ResourceService {
     }
 
     @Override
-    public void addOne(String resourceName){
+    public Boolean addOne(String resourceName){
         Resource newResource = new Resource(resourceName);
         resourceRepository.saveAndFlush(newResource);
+        return true;
     }
 
     @Override
-    public void updateName(Integer id, String resourceName) throws Exception{
+    public Boolean updateName(Integer id, String resourceName) throws Exception{
         Resource resource = resourceRepository.findResourceById(id);
         if (resource == null){
             throw new Exception ("The resource doesn't exist.");
         }
         resource.setName(resourceName);
         resourceRepository.saveAndFlush(resource);
+        return true;
     }
 
     @Override
-    public void updateCode(Integer id, String resourceCode) throws Exception{
+    public Boolean updateCode(Integer id, String resourceCode) throws Exception{
         Resource resource = resourceRepository.findResourceById(id);
         if (resource == null){
             throw new Exception ("The resource doesn't exist.");
         }
         resource.setResourceCode(resourceCode);
         resourceRepository.saveAndFlush(resource);
+        return true;
     }
 
     @Override
-    public void deleteOne(Integer id) throws Exception{
+    public Boolean deleteOne(Integer id) throws Exception{
         Resource resource = resourceRepository.findResourceById(id);
         if (resource == null){
             throw new Exception ("Failed. The resource doesn't exist.");
         }
         resourceRepository.deleteById(id);
-
+        return true;
     }
 }

@@ -26,6 +26,10 @@ public class Project {
     @DateTimeFormat(pattern = "MM/DD/YYYY")
     private Date timeCreated;
 
+    @Column(name = "time_modified")
+    @DateTimeFormat(pattern = "MM/DD/YYYY")
+    private Date timeModified;
+
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "project",
@@ -71,6 +75,14 @@ public class Project {
 
     public void setTimeCreated(Date timeCreated) {
         this.timeCreated = timeCreated;
+    }
+
+    public Date getTimeModified() {
+        return timeModified;
+    }
+
+    public void setTimeModified(Date timeModified) {
+        this.timeModified = timeModified;
     }
 
     public List<ProjectResource> getResources() {
