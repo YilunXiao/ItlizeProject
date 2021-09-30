@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface ProjectResourceService {
     public ProjectResource findById(Integer Id);
-    List<ProjectService> findAll();
+    List<ProjectResource> findAll();
     public ProjectResource save(ProjectResource projectResource);
 }
