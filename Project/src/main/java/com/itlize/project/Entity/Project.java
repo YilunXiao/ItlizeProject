@@ -45,6 +45,10 @@ public class Project {
     public Project() {
     }
 
+    public Project(String projectName) {
+        this.name = projectName;
+    }
+
     public Integer getId() {
         return id;
     }

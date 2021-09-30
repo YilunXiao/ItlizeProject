@@ -24,8 +24,7 @@ public class ResourceServiceImp implements ResourceService {
 
     @Override
     public List<Resource> findAll(){
-        List<Resource> list = resourceRepository.findAll();
-        return list;
+        return resourceRepository.findAll();
     }
 
     @Override
