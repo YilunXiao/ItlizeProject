@@ -17,9 +17,6 @@ public class Resource {
     @Column(name = "resource_code")
     private String resourceCode;
 
-    @Column(name = "cost")
-    private Integer cost;
-
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "resource",
@@ -33,6 +30,10 @@ public class Resource {
     private List<ResourceDetail> resourceDetails;
 
     public Resource() {
+    }
+
+    public Resource(String resourceName) {
+        this.name = resourceName;
     }
 
     public Integer getId() {
@@ -59,16 +60,8 @@ public class Resource {
         this.resourceCode = resourceCode;
     }
 
-    public Integer getCost() {
-        return cost;
-    }
-
     public List<ProjectResource> getProjectResources() {
         return projectResources;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
     }
 
     public void setProjectResources(List<ProjectResource> projectResources) {
