@@ -1,5 +1,7 @@
 package com.itlize.project.Entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -13,11 +15,15 @@ public class Project {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "time_created")
+    @DateTimeFormat(pattern = "MM/DD/YYYY")
     private Date timeCreated;
 
     @OneToMany(
@@ -51,6 +57,14 @@ public class Project {
         this.user = user;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public Date getTimeCreated() {
         return timeCreated;
     }
@@ -66,7 +80,6 @@ public class Project {
     public List<ProjectColumn> getColumns() {
         return columns;
     }
-
 
     public void setResources(List<ProjectResource> resources) {
         this.resources = resources;
