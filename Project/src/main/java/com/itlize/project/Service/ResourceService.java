@@ -13,4 +13,6 @@ public interface ResourceService {
     Boolean updateName(Integer id, String resourceName) throws Exception;
     Boolean updateCode(Integer id, String resourceName) throws Exception;
     Boolean deleteOne(Integer id) throws Exception;
+    Boolean addDetail(Integer resourceId, Integer resourceDetailId) throws Exception;
+    Boolean removeDetail(Integer resourceId, Integer resourceDetailId) throws Exception;
 }

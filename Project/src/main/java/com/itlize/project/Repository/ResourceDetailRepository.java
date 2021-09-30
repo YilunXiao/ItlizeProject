@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ResourceDetailRepository extends JpaRepository<ResourceDetail, Integer> {
+    ResourceDetail findResourceDetailById(Integer id);
 }

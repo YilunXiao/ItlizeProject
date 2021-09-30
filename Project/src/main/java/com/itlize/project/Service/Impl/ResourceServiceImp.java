@@ -1,6 +1,8 @@
 package com.itlize.project.Service.Impl;
 
 import com.itlize.project.Entity.Resource;
+import com.itlize.project.Entity.ResourceDetail;
+import com.itlize.project.Repository.ResourceDetailRepository;
 import com.itlize.project.Repository.ResourceRepository;
 import com.itlize.project.Service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import java.util.List;
 public class ResourceServiceImp implements ResourceService {
     @Autowired
     private ResourceRepository resourceRepository;
+
+    @Autowired
+    private ResourceDetailRepository resourceDetailRepository;
 
     @Override
     public Resource findOne(Integer id) throws Exception{
@@ -81,6 +86,48 @@ public class ResourceServiceImp implements ResourceService {
             throw new Exception ("Failed. The resource doesn't exist.");
         }
         resourceRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public Boolean addDetail(Integer resourceId, Integer resourceDetailId) throws Exception{
+        Resource resource = resourceRepository.findResourceById(resourceId);
+        if (resource == null){
+            throw new Exception("The resource doesn't exist.");
+        }
+        ResourceDetail resourceDetail = resourceDetailRepository.findResourceDetailById(resourceDetailId);
+        if (resourceDetail == null){
+            throw new Exception("The resource detail doesn't exist.");
+        }
+        List<ResourceDetail> list = resource.getResourceDetails();
+        if(list.contains(resourceDetail)){
+            throw new Exception("The detail has been added to the list.");
+        }else{
+            list.add(resourceDetail);
+            resource.setResourceDetails(list);
+            resourceRepository.save(resource);
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean removeDetail(Integer resourceId, Integer resourceDetailId) throws Exception{
+        Resource resource = resourceRepository.findResourceById(resourceId);
+        ResourceDetail resourceDetail = resourceDetailRepository.findResourceDetailById(resourceDetailId);
+        if (resource == null){
+            throw new Exception("The resource doesn't exist.");
+        }
+        if (resourceDetail == null){
+            throw new Exception("The resource detail doesn't exist.");
+        }
+        List<ResourceDetail> list = resource.getResourceDetails();
+        if(list.contains(resourceDetail)){
+            list.remove(resourceDetail);
+            resource.setResourceDetails(list);
+            resourceRepository.save(resource);
+        }else{
+            throw new Exception("The detail has been added to the list.");
+        }
         return true;
     }
 }
