@@ -5,6 +5,7 @@ import com.itlize.project.Entity.Resource;
 import java.util.List;
 
 public interface ResourceService {
+
     Resource findOne(Integer id) throws Exception;
     List<Resource> findAll();
     Resource findName(String resourceName) throws Exception;
@@ -13,4 +14,5 @@ public interface ResourceService {
     void updateName(Integer id, String resourceName) throws Exception;
     void updateCode(Integer id, String resourceName) throws Exception;
     void deleteOne(Integer id) throws Exception;
+
 }

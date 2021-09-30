@@ -79,5 +79,6 @@ public class ResourceServiceImp implements ResourceService {
             throw new Exception ("Failed. The resource doesn't exist.");
         }
         resourceRepository.deleteById(id);
+
     }
 }
